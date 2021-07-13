@@ -376,7 +376,7 @@
             "type" : "string",
             "example" : "EUR"
           },
-          "Rates" : {
+          "HistoryRates" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/HistoricalRate"
@@ -390,13 +390,8 @@
             "type" : "string",
             "example" : "12-01-2022"
           },
-          "CurrencyCode" : {
-            "type" : "string",
-            "example" : "GBP"
-          },
-          "Value" : {
-            "type" : "number",
-            "example" : 1.85
+          "Rates" : {
+            "$ref" : "#/components/schemas/Rate"
           }
         }
       },
