@@ -52,10 +52,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Conversion"
-                  }
+                  "$ref" : "#/components/schemas/Conversion"
                 }
               }
             }
@@ -149,10 +146,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/RateResponse"
-                  }
+                  "$ref" : "#/components/schemas/RateResponse"
                 }
               }
             }
@@ -220,10 +214,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/RateResponse"
-                  }
+                  "$ref" : "#/components/schemas/HistoricalRatesResponse"
                 }
               }
             }
@@ -237,18 +228,6 @@
         "summary" : "Show rates in operational currency comparing to base currency for date range",
         "operationId" : "ratesHistory",
         "parameters" : [ {
-          "name" : "ConverTo",
-          "in" : "query",
-          "required" : true,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        }, {
           "name" : "ConvertFrom",
           "in" : "query",
           "required" : true,
@@ -277,6 +256,18 @@
             "type" : "string",
             "format" : "MM-DD-YYYY"
           }
+        }, {
+          "name" : "ConvertTo",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
         } ],
         "responses" : {
           "500" : {
@@ -294,10 +285,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/RateResponse"
-                  }
+                  "$ref" : "#/components/schemas/RateResponse"
                 }
               }
             }
@@ -354,12 +342,61 @@
             "type" : "string",
             "example" : "EUR"
           },
-          "Amount" : {
-            "type" : "number",
-            "example" : 10
+          "Rates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Rate"
+            }
+          }
+        }
+      },
+      "Rate" : {
+        "properties" : {
+          "CurrencyCode" : {
+            "type" : "string",
+            "example" : "GBP"
           },
-          "ConvertRersult" : {
-            "$ref" : "#/components/schemas/ConvertRersult"
+          "Value" : {
+            "type" : "number",
+            "example" : 1.85
+          }
+        }
+      },
+      "HistoricalRatesResponse" : {
+        "properties" : {
+          "DateFrom" : {
+            "type" : "string",
+            "example" : "12-01-2022"
+          },
+          "DateTo" : {
+            "type" : "string",
+            "example" : "12-02-2022"
+          },
+          "BaseCurrency" : {
+            "type" : "string",
+            "example" : "EUR"
+          },
+          "Rates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/HistoricalRate"
+            }
+          }
+        }
+      },
+      "HistoricalRate" : {
+        "properties" : {
+          "ExchangeDate" : {
+            "type" : "string",
+            "example" : "12-01-2022"
+          },
+          "CurrencyCode" : {
+            "type" : "string",
+            "example" : "GBP"
+          },
+          "Value" : {
+            "type" : "number",
+            "example" : 1.85
           }
         }
       },
