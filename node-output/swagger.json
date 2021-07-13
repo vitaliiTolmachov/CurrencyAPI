@@ -285,7 +285,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/RateResponse"
+                  "$ref" : "#/components/schemas/HistoricalRatesResponse"
                 }
               }
             }
